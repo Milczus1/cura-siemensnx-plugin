@@ -11,7 +11,7 @@ from UM.PluginRegistry import PluginRegistry
 
 from cura.CuraApplication import CuraApplication
 
-from PyQt5.QtCore import QObject
+from PyQt6.QtCore import QObject
 
 i18n_catalog = i18nCatalog("cura")
 
