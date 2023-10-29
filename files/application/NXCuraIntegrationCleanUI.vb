@@ -344,7 +344,7 @@ Public Class NXCuraIntegrationCleanUI
             Dim num_errors As Integer
             Dim error_info As UFStd.StlError() = {}
 
-            theUFSession.Std.PutSolidInStlFile(fileHandle, NXOpen.Tag.Null, thisTag, 0, 100, 0.01, num_errors, error_info)
+            theUFSession.Std.PutSolidInStlFile(fileHandle, NXOpen.Tag.Null, thisTag, 0, 100, 0.002, num_errors, error_info)
             Echo("Number of errors: " & num_errors)
             Dim cntr As Integer = 0
 
