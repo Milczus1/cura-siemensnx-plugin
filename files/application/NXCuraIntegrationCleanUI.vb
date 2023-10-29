@@ -1,4 +1,4 @@
-﻿'==============================================================================
+'==============================================================================
 '  WARNING!!  This file is overwritten by the Block UI Styler while generating
 '  the automation code. Any modifications to this file will be lost after
 '  generating the code again.
@@ -56,7 +56,7 @@ Public Class NXCuraIntegrationCleanUI
     Private Shared theSession As Session
     Private Shared theUFSession As UFSession
     Private Shared theCuraLocation As String
-    Dim targetFile As [String] = Environment.GetEnvironmentVariable("temp") + "STL_output_from_NX.stl"
+    Dim targetFile As [String] = Environment.GetEnvironmentVariable("TEMP") + "\STL_NX.stl"
     Dim bodyOccArrayList As System.Collections.ArrayList = New ArrayList()
     Dim interactiveMode As Boolean
     Private Shared theUI As UI
@@ -87,7 +87,7 @@ Public Class NXCuraIntegrationCleanUI
             theUFSession = UFSession.GetUFSession()
             theUI = UI.GetUI()
             theCuraLocation = GetCuraLocation()
-            theDlxFileName = "NX10_CuraCleanUI.dlx"
+            theDlxFileName = "NXCuraCleanUI.dlx"
             theDialog = theUI.CreateDialog(theDlxFileName)
             theDialog.AddApplyHandler(AddressOf apply_cb)
             theDialog.AddOkHandler(AddressOf ok_cb)
@@ -392,8 +392,8 @@ Public Class NXCuraIntegrationCleanUI
         Try
             'Get all Cura key names
             Dim curaKeyNameList As New ArrayList
-            For Each regKeyName As String In regKey.GetSubKeyNames()
-                If regKeyName.StartsWith("Ultimaker Cura ") Or regKeyName.StartsWith("Cura ") Then
+            For Each regKeyName As String In regKey.GetSubKeyNames()								
+                If regKeyName.StartsWith("UltiMaker Cura ") Or regKeyName.StartsWith("Cura ") Then
                     curaKeyNameList.Add(regKeyName)
                 End If
             Next
@@ -408,13 +408,14 @@ Public Class NXCuraIntegrationCleanUI
             Dim latestCuraIconLocation As String = regKey.GetValue("DisplayIcon", "")
 
             Dim curaInstallationDir = latestCuraIconLocation.Substring(0, latestCuraIconLocation.LastIndexOf("\") + 1)
-            Dim curaExecutablePath = curaInstallationDir + "Cura.exe"
+            Dim curaExecutablePath = curaInstallationDir + "UltiMaker-Cura.exe"
 
             Return curaExecutablePath
 
         Catch ex As Exception
             theUI.NXMessageBox.Show("Block Styler", NXMessageBox.DialogType.Error, ex.ToString)
         End Try
+            
     End Function
 
 End Class
